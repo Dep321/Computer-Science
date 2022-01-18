@@ -1,35 +1,40 @@
+import org.apache.groovy.parser.antlr4.GroovyParser;
+
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Random;
+import java.util.Arrays; //Package for Arrays and telling Java to utilise
+import java.util.Scanner; //Package for Scanner that tells java how to use scanners and allows me to make interactions with the users
+import java.util.Random; //Package that is used to randomise for java and make things easier for coding
 public class Game {
     public static void main(String[] args) {
 
         //System Objects
-        Scanner in = new Scanner(System.in);
-        Random rand = new Random();
+        Scanner in = new Scanner(System.in); //code for input
+        Random rand = new Random(); // code to randomize
 
         //Game Variables
         String[] enemies = {"Zeus", "Hera", "Poseidon", "Hades", "Demeter", "Athena", "Apollo", "Artemis", "Ares",
-                "Hephaestus", "Aphrodite", "Hermes", "Hestia", "Dionysus", "Cronos"};
-        
-        int maxEnemyHealth = 5000; //Enemies Health
-        int maxEnemyAttackDamage = 500; //Enemies Attack Damage
-        int enemyDefense = 250; //Enemy Defense or resistance to your attack
+                "Hephaestus", "Aphrodite", "Hermes", "Hestia", "Dionysus", "Chronos"};  // Array of all the enemies names
+        Arrays.asList(enemies); //code used to make the array a list for the index to work
+        int index = 0; //this is the index variable set to 0 to mean that "zeus" is the starting unit and its value in the code is 0 and to create an ascending order later in the code to make sure Zeus isn't shown again.
+
+        int maxEnemyHealth = 500; //Enemies Health
+        int maxEnemyAttackDamage = 75; //Enemies Attack Damage
+        int enemyDefense = 25; //Enemy Defense or resistance to your attack
 
         //Player Variables
         int health = 100; //PLayer Health
-        int attackDamage = 500; //How much damage player does to opponents
+        int attackDamage = 50; //How much damage player does to opponents
         int numHealthPots = 5;  //How much heals the player gets
-        int healthPotionHealthAmount = 500; //How much Health is regenerated
+        int healthPotionHealthAmount = 50; //How much Health is regenerated
         int healthPotionDropChance = 50; // 50% chance for a health potion to drop
-        int Defense = 100; //depends on how much attack they have for the player to either block or not
+        int Defense = 25; //depends on how much attack they have for the player to either block or not
 
         //Game Ending Variables
         int numEnemyDefeated = 0; //variable for how many times the gods will die
-        int numEnemyRequiredtoKill = 15; //variable for how many gods their are
+        int numEnemyRequiredtoKill = 15; //variable for how many gods there are that needs to be killed
         int enemyNeededtoKill = numEnemyRequiredtoKill - numEnemyDefeated; //variable for how the code will calculate the lack of gods and when it hits 0, the game will end.
 
-        boolean running = true;
+        boolean running = true;  //when the game runs this function will ensure that the following code below will run
 
         System.out.println("Welcome to the Fight against Olympus!");
         System.out.println("Hello there Warrior, You have been summoned in this pathetic world to end the reign of the Gods."
@@ -39,16 +44,17 @@ public class Game {
                 "\ngods and end their reign of terror. I wish you luck, Oh Faithful Warrior!");
 
         GAME:
-        while (running) {
+        while (running) { //code for the game to run in loop for everything
 
             System.out.println("-------------------------------------------------");
 
             int enemyHealth = rand.nextInt(maxEnemyHealth); // randomly chooses the health of enemy between 0 and the amount inputted in the variable
             int enemyAttackDamage = rand.nextInt(maxEnemyAttackDamage); //randomly chooses the attack damage for the enemy
-            String enemy = enemies[rand.nextInt(enemies.length)]; //randomly chooses an enemy from the array to fight with
+            String enemy = enemies[index++]; //chooses the next enemy in ascending order based on how the array was listed with the array list
+
             System.out.println("\t# " + enemy + " has appeared! #\n"); //Statement of showing what enemy has appeared
 
-            while (enemyHealth > 0) {
+            while (enemyHealth > 0) { //Code of telling what happens if the enemy has health above 0 what would happen with the character and enemy, what options you have and how you can deal with it.
                 System.out.println("-------------------------------------------------");
                 System.out.println("\tYour HP: " + health); //says how much health you have before entering battle
                 System.out.println("\t" + enemy + "'s HP: " + enemyHealth); //says how much health your enemy has before entering battle
@@ -57,76 +63,85 @@ public class Game {
                 System.out.println("\t2. Drink Health Potion"); //option to drink health potion
                 System.out.println("\t3. Retreat"); //option to run away from enemy
 
-                String input = in.nextLine();
-                if (input.equals("1")) {     //Code of Running Option 1 of the 3 Options given to player
-                    int damageDealt = rand.nextInt(attackDamage);
-                    int damageTaken = rand.nextInt(enemyAttackDamage);
+                String input = in.nextLine(); //used to define the variable input for the future code and inputs
+                if (input.equals("1")) {     //Code of Running Option 1 of the 3 Options given to player,  Option
+                    int damageDealt = rand.nextInt(attackDamage); // Randomizes the damage dealt from the variable of the attack damage from 1 to the damage set to in the variable and picks a number between those 2 numbers
+                    int damageTaken = rand.nextInt(enemyAttackDamage); // Randomizes the attack damage of the enemies from 1 to whatever number is set for the variable in the brackets
 
-                    if (enemyDefense > damageDealt) {
-                        health = health;
-                        damageDealt = 0;
-                        System.out.println("\t> " + enemy +"'s defense is too strong, your attack was nullified");
+                    if (enemyDefense > damageDealt) { //a code for defense mechanism, if your damage is lower than the defense, then you will have dealt no damage to your enemy.
+                        health = health; //make sure your health stays the same
+                        damageDealt = 0; //make sure to convert your damagedealt function to nothing
+                        System.out.println("\t> " + enemy +"'s defense is too strong, your attack was nullified"); //alerts you why you did no damage
                     } else {
-                        enemyHealth -= (damageDealt -= 0.2 * enemyDefense);
+                        enemyHealth -= (damageDealt -= 0.2 * enemyDefense); //if it's not greather than, then the defesnse blocks some damage of the hit.
                     }
 
-                    if (Defense > damageTaken) {
-                        health = health;
-                        System.out.println("\t> Your Defense is strong, you nullified " + enemy +"'s attack!");
-                        damageTaken = 0;
+                    if (Defense > damageTaken) { //if your defense is higher than damagetaken, then your hp will remain the same function.
+                        health = health; //makes sure your health stays teh same
+                        System.out.println("\t> Your Defense is strong, you nullified " + enemy +"'s attack!"); //statement printed out to say you blocked all damage
+                        damageTaken = 0; //makes sure your opponent has no damage.
                     } else {
-                        health -= (damageTaken -= 0.3 * Defense);
+                        health -= (damageTaken -= 0.3 * Defense); //blocks the damage if the defense is lower than the attack somewhat
                     }
 
-                    System.out.println("\t> You strike to " + enemy + " for " + damageDealt + " damage.");
-                    System.out.println("\t> You have taken " + damageTaken + " damage from the " + enemy);
+                    System.out.println("\t> You strike to " + enemy + " for " + damageDealt + " damage."); //alert statement for the user to understand more about the situation
+                    System.out.println("\t> You have taken " + damageTaken + " damage from the " + enemy); //alert statement for the user to understand more about the situation
 
-                    if (health <= 0) {
-                        System.out.println("\t> You have taken too much damage, you are too weak to fight on.");
-                        break;
+                    if (health <= 0) { //code of what happens when the player's health is at 0
+                        System.out.println("\t> You have taken too much damage, you are too weak to fight on."); //alert statement to the player that his game time is over
+                        break; //makes sure that the code stops running as your health is gone.
                     }
-                } else if (input.equals("2")) {     //Code of Running Option 2 of the 3 Options given to player
-                    if (numHealthPots > 0) {
-                        health += healthPotionHealthAmount;
-                        numHealthPots--;
-                        System.out.println("\t> You drank a health potion, healing your self for " +
-                                healthPotionHealthAmount + "." + "\n\t> Your current health is " + health + "."
-                                + "\n\t> Your have " + numHealthPots + " potions of health remaining.\n");
-                    } else {
-                        System.out.println("\t> The player doesn't have any health potions left to use. Defeat " +
+                } else if (input.equals("2")) {     //Code of Running Option 2 of the 3 Options given to player, how using the option 2 will lead to the player using a health potion.
+                    if (numHealthPots > 0) {        //Code for what happens when you have health potions and use them.
+                        health += healthPotionHealthAmount; //PLayer health gets added with the health potion amount.
+                        numHealthPots--; //after using health potion, you lose it as you used the item.
+                        System.out.println("\t> You drank a health potion, healing your self for " + // Alert to the player of what happened when you did the function.
+                                healthPotionHealthAmount + "." + "\n\t> Your current health is " + health + "." //Alert the player of the current situation of the player's health
+                                + "\n\t> Your have " + numHealthPots + " potions of health remaining.\n"); // Alert the player of the situation
+                    } else { //if the player is trying to use the health potions but doesn't have any.
+                        System.out.println("\t> The player doesn't have any health potions left to use. Defeat " + //alert the player why the player couldn't use a health potion.
                                 "the enemy for a chance to get one");
                     }
-                } else if (input.equals("3")) {     //Code of Running Option 3 of the 3 Options given to player
-                    System.out.println("\t> You run away from the " + enemy + "!");
-                    continue GAME;
+                } else if (input.equals("3")) {     //Code of Running Option 3 of the 3 Options given to player, if you retreat, the game will reset all your progress and will not reset your healt potions that you have used. 
+                    System.out.println("\t> You run away from the " + enemy + "!"); // Alert the player of the situation
+                    System.out.println("\t> You don't have enough strength."); // Alert the player of the situation
+                    System.out.println("\t> You may restart this game from the beginning."); // Alert the player of the situation
+                    if(input.equals("3")) { //when the player inputs the number 3, the result of what happens when you retreat occurs. 
+                        index = 0; //index resets as the array is based on this index and if it resets, then the enemies will start from all the way from the beginning.
+                        System.out.println("-------------------------------------------------");
+                        enemy = enemies[index++]; //randomly chooses an enemy from the array to fight with
+                        System.out.println("\t# " + enemy + " has appeared! #\n"); //Statement of showing what enemy has appeared
+                        continue; //makes the code start again from the place where "GAME:" is written in the code
+                    }
 
                 } else { //Code for when the person inputs something else that don't match the inputs for the other 3 options
                     System.out.println("Please type either number 1 to Attack, number 2 to Heal, number 3 to Block,"
-                            + "or number 4 to Run.");
+                            + "or number 4 to Run."); // Alerts to the player why the player didn't see anything happen and what they should do again.
                 }
             }
             if (health < 1) { //If the warrior has no health, the game ends and this is the code for that.
-                System.out.println("\t> You have retreated from the War, You were too weak for the Gods.");
-                break;
+                System.out.println("\t> You have retreated from the War, You were too weak for the Gods."); //Announce they have failed there mission. 
+                break; //ends the running of the game after the message is delivered. 
             }
             System.out.println("-------------------------------------------------");
-            System.out.println("# " + enemy + " has been defeated! #");
-            System.out.println("# You have " + health + " HP left! # ");
-            if (rand.nextInt(100) < healthPotionDropChance) { // The code for what are the chances of getting an health potion.
+            System.out.println("# " + enemy + " has been defeated! #"); // Alert the player of the situation
+            System.out.println("# You have " + health + " HP left! # "); // Alert the player of the situation
+            if (rand.nextInt(100) < healthPotionDropChance) { // The code for what are the chances of getting a health potion.
                 numHealthPots++;
-                System.out.println("# Congratulations, You have received a Health Potion! # ");
-                System.out.println("# Your current amount of Health Potions are " + numHealthPots + "! #");
+                System.out.println("# Congratulations, You have received a Health Potion! # "); // Alert the player of the situation
+                System.out.println("# Your current amount of Health Potions are " + numHealthPots + "! #"); // Alert the player of the situation
             }
 
             if (numEnemyDefeated >= 14) { // when all 15 gods are killed, the game will end.
                 System.out.println("# Congratulations!!! You have completed your mission and you may return back " +
-                        "home now. #");
+                        "home now. #"); // Alert the player of the situation
                 break;
             }
                 else { // Code for Making sure that if the enemies are still below the 15 gods that are needed to kill it will count it up
-                    numEnemyDefeated++;
-                    enemyNeededtoKill = numEnemyRequiredtoKill - numEnemyDefeated;
-                    System.out.println("# You only need " + enemyNeededtoKill + " more enemies to kill to WIN!!! #");
+                    numEnemyDefeated++; //the variable to how many enemies defeated as one enemy is killed the "++" represent the meaning of the initial value of the variable with one getting added everytime an enemy dies.
+                    enemyNeededtoKill = numEnemyRequiredtoKill - numEnemyDefeated; //function to know how many times to go before the game finishes
+                    System.out.println("# You only need " + enemyNeededtoKill + " more enemies to kill to WIN!!! #"); // Alert the player of the situation.
+
                 }
 
             }
