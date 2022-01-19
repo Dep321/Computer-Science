@@ -112,7 +112,7 @@ public class Game {
                         enemy = enemies[index++]; //randomly chooses an enemy from the array to fight with
                         System.out.println("\t# " + enemy + " has appeared! #\n"); //Statement of showing what enemy has appeared
                         maxEnemyHealth = 100; //new random health function, to make it easier for the players.
-                        int enemyHealth = rand.nextInt(maxEnemyHealth); // randomly chooses the health of enemy between 0 and the amount inputted in the variable
+                        enemyHealth = rand.nextInt(maxEnemyHealth); // randomly chooses the health of enemy between 0 and the amount inputted in the variable
                         continue; //makes the code start again from the place where "GAME:" is written in the code
                     }
 
