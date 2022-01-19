@@ -17,7 +17,7 @@ public class Game {
         Arrays.asList(enemies); //code used to make the array a list for the index to work
         int index = 0; //this is the index variable set to 0 to mean that "zeus" is the starting unit and its value in the code is 0 and to create an ascending order later in the code to make sure Zeus isn't shown again.
 
-        int maxEnemyHealth = 500; //Enemies Health
+        int maxEnemyHealth = 300; //Enemies Health
         int maxEnemyAttackDamage = 75; //Enemies Attack Damage
         int enemyDefense = 25; //Enemy Defense or resistance to your attack
 
@@ -111,6 +111,8 @@ public class Game {
                         System.out.println("-------------------------------------------------");
                         enemy = enemies[index++]; //randomly chooses an enemy from the array to fight with
                         System.out.println("\t# " + enemy + " has appeared! #\n"); //Statement of showing what enemy has appeared
+                        maxEnemyHealth = 100; //new random health function, to make it easier for the players.
+                        int enemyHealth = rand.nextInt(maxEnemyHealth); // randomly chooses the health of enemy between 0 and the amount inputted in the variable
                         continue; //makes the code start again from the place where "GAME:" is written in the code
                     }
 
