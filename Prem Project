@@ -1,0 +1,79 @@
+//import javax.swing.*;
+
+//public class image {
+//    public static void main(String[] args) {
+//        JFrame frame = new JFrame("My Application");
+//
+//        frame.setSize(590, 703);
+//        frame.setVisible(true);
+//
+//        frame.setResizable(false);
+//        frame.setLocationRelativeTo(null);
+//
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//
+//        JLabel label = new JLabel();
+//        label.setIcon(new ImageIcon("C://Users/mayaksingal/Desktop/CS Project/Prem Tour\\p1.jpg"));
+//
+//        frame.add(label);
+//    }
+//}
+
+import javax.swing.*;
+import java.awt.*;
+
+public class image{
+
+    public image(){
+
+        JFrame  frame = new JFrame();
+
+        JButton gate = new JButton("Gate");
+        JButton secondarySchool = new JButton("Secondary School Building");
+        JButton primarySchool = new JButton("Primary School Building");
+        JButton auditorium = new JButton("Auditorium");
+        JButton boardingCluster= new JButton("Boarding Cluster");
+        JButton adminBuilding = new JButton("Admin Building");
+        JButton artHouse = new JButton("Art House");
+        JButton gym = new JButton("Gym");
+        JButton swimmingPool = new JButton("Swimming Pool");
+        JButton cafeteria = new JButton("Cafeteria");
+        JButton footballField = new JButton("Football Field");
+        JButton basketballCourts = new JButton("Basketball Courts");
+        JButton farm = new JButton("Farm");
+
+        JPanel panel = new JPanel();
+        panel.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
+        panel.setLayout(new GridLayout(0,1));
+        panel.add(gate);
+        panel.add(secondarySchool);
+        panel.add(primarySchool);
+        panel.add(auditorium);
+        panel.add(boardingCluster);
+        panel.add(adminBuilding);
+        panel.add(artHouse);
+        panel.add(gym);
+        panel.add(swimmingPool);
+        panel.add(cafeteria);
+        panel.add(footballField);
+        panel.add(basketballCourts);
+        panel.add(farm);
+
+
+        frame.add(panel, BorderLayout.CENTER);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Prem Tour");
+        frame.pack();
+        frame.setVisible(true);
+        JLabel premTour = new JLabel();
+        premTour.setIcon(new ImageIcon("/Desktop/CSProject/PremTour/p1.jpg"));
+        frame.add(premTour);
+
+    }
+
+    public static void main(String[] args) {
+        new image();
+
+
+    }
+}
