@@ -1,79 +1,156 @@
-//import javax.swing.*;
-
-//public class image {
-//    public static void main(String[] args) {
-//        JFrame frame = new JFrame("My Application");
-//
-//        frame.setSize(590, 703);
-//        frame.setVisible(true);
-//
-//        frame.setResizable(false);
-//        frame.setLocationRelativeTo(null);
-//
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//        JLabel label = new JLabel();
-//        label.setIcon(new ImageIcon("C://Users/mayaksingal/Desktop/CS Project/Prem Tour\\p1.jpg"));
-//
-//        frame.add(label);
-//    }
-//}
-
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class image{
 
+public class image implements ActionListener {
+
+
+    JButton gate, secondarySchool, primarySchool, auditorium, boardingCluster, adminBuilding, artHouse, gym, swimmingPool, cafeteria, footballField, basketballCourts, farm;
+    JFrame frame;
     public image(){
 
         JFrame  frame = new JFrame();
+        Container container = frame.getContentPane();
+        container.setLayout(null);
 
-        JButton gate = new JButton("Gate");
-        JButton secondarySchool = new JButton("Secondary School Building");
-        JButton primarySchool = new JButton("Primary School Building");
-        JButton auditorium = new JButton("Auditorium");
-        JButton boardingCluster= new JButton("Boarding Cluster");
-        JButton adminBuilding = new JButton("Admin Building");
-        JButton artHouse = new JButton("Art House");
-        JButton gym = new JButton("Gym");
-        JButton swimmingPool = new JButton("Swimming Pool");
-        JButton cafeteria = new JButton("Cafeteria");
-        JButton footballField = new JButton("Football Field");
-        JButton basketballCourts = new JButton("Basketball Courts");
-        JButton farm = new JButton("Farm");
+        gate = new JButton("Gate");
+        container.add(gate);
+        gate.setBounds(100,20,200,40);
 
-        JPanel panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
-        panel.setLayout(new GridLayout(0,1));
-        panel.add(gate);
-        panel.add(secondarySchool);
-        panel.add(primarySchool);
-        panel.add(auditorium);
-        panel.add(boardingCluster);
-        panel.add(adminBuilding);
-        panel.add(artHouse);
-        panel.add(gym);
-        panel.add(swimmingPool);
-        panel.add(cafeteria);
-        panel.add(footballField);
-        panel.add(basketballCourts);
-        panel.add(farm);
+        secondarySchool = new JButton("Secondary School Building");
+        container.add(secondarySchool);
+        secondarySchool.setBounds(100,40,200,40);
+
+        primarySchool = new JButton("Primary School Building");
+        container.add(primarySchool);
+        primarySchool.setBounds(100,60,200,40);
+
+        auditorium = new JButton("Auditorium");
+        container.add(auditorium);
+        auditorium.setBounds(100,80,200,40);
+
+        boardingCluster= new JButton("Boarding Cluster");
+        container.add(boardingCluster);
+        boardingCluster.setBounds(100,100,200,40);
+
+        adminBuilding = new JButton("Admin Building");
+        container.add(adminBuilding);
+        adminBuilding.setBounds(100,120,200,40);
+
+        artHouse = new JButton("Art House");
+        container.add(artHouse);
+        artHouse.setBounds(100,140,200,40);
+
+        gym = new JButton("Gym");
+        container.add(gym);
+        gym.setBounds(100,160,200,40);
+
+        swimmingPool = new JButton("Swimming Pool");
+        container.add(swimmingPool);
+        swimmingPool.setBounds(100,200,200,40);
+
+        cafeteria = new JButton("Cafeteria");
+        container.add(cafeteria);
+        cafeteria.setBounds(100,220,200,40);
+
+        footballField = new JButton("Football Field");
+        container.add(footballField);
+        footballField.setBounds(100,240,200,40);
+
+        basketballCourts = new JButton("Basketball Courts");
+        container.add(basketballCourts);
+        basketballCourts.setBounds(100,260,200,40);
+
+        farm = new JButton("Farm");
+        container.add(farm);
+        farm.setBounds(100,280,200,40);
 
 
-        frame.add(panel, BorderLayout.CENTER);
+        gate.addActionListener(this);
+        secondarySchool.addActionListener(this);
+        primarySchool.addActionListener(this);
+        auditorium.addActionListener(this);
+        boardingCluster.addActionListener(this);
+        adminBuilding.addActionListener(this);
+        artHouse.addActionListener(this);
+        gym.addActionListener(this);
+        swimmingPool.addActionListener(this);
+        cafeteria.addActionListener(this);
+        footballField.addActionListener(this);
+        basketballCourts.addActionListener(this);
+        farm.addActionListener(this);
+
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Prem Tour");
-        frame.pack();
+        frame.setBounds(0,0,1000,1000);
         frame.setVisible(true);
-        JLabel premTour = new JLabel();
-        premTour.setIcon(new ImageIcon("/Desktop/CSProject/PremTour/p1.jpg"));
-        frame.add(premTour);
 
-    }
+            }
 
     public static void main(String[] args) {
         new image();
 
 
+        }
+
+    public void actionPerformed(ActionEvent e){
+
+         if(e.getSource() == gate){
+
+             JOptionPane.showMessageDialog(frame, "This is Gate Info.");
+         }
+        if(e.getSource() == secondarySchool){
+
+            JOptionPane.showMessageDialog(frame, "This is Secondary School Info.");
+
+        }
+        if(e.getSource() == primarySchool){
+
+            JOptionPane.showMessageDialog(frame, "This is Primary School Info.");
+        }
+        if(e.getSource() == auditorium){
+
+            JOptionPane.showMessageDialog(frame, "This is Auditorium Info.");
+        }
+        if(e.getSource() == boardingCluster){
+
+            JOptionPane.showMessageDialog(frame, "This is Boarding Cluster Info.");
+        }
+        if(e.getSource() == adminBuilding){
+
+            JOptionPane.showMessageDialog(frame, "This is Admin Building Info.");
+        }
+        if(e.getSource() == artHouse){
+
+            JOptionPane.showMessageDialog(frame, "This is Art House Info.");
+        }
+        if(e.getSource() == gym){
+
+            JOptionPane.showMessageDialog(frame, "This is Gym Info.");
+        }
+        if(e.getSource() == swimmingPool){
+
+            JOptionPane.showMessageDialog(frame, "This is Swimming Pool Info.");
+        }
+        if(e.getSource() == cafeteria){
+
+            JOptionPane.showMessageDialog(frame, "This is Cafeteria Info.");
+        }
+        if(e.getSource() == footballField){
+
+            JOptionPane.showMessageDialog(frame, "This is Football Field Info.");
+        }
+        if(e.getSource() == basketballCourts){
+
+            JOptionPane.showMessageDialog(frame, "This is Basketball Courts Info.");
+        }
+        if(e.getSource() == farm){
+
+            JOptionPane.showMessageDialog(frame, "This is Farm Info.");
+        }
     }
 }
+
